@@ -29,7 +29,7 @@ nav a {
   flex: 1;
 }
 
-nav a[aria-current="page"] {
+nav a.current {
   border-bottom: 0.4em solid oklch(85% 3% 200);
   padding-bottom: 0.1em;
 }
