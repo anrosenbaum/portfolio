@@ -1,61 +1,73 @@
 [
     {
         "title": "Lorem Ipsum Dolor",
+        "year": 2024,
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Lorem ipsum dolor sit amet consectetur."
     },
     {
         "title": "Lorem Ipsum Dolor",
+        "year": 2025,
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Lorem ipsum dolor sit amet consectetur."
     },
     {
         "title": "Lorem Ipsum Dolor",
+        "year": 2025,
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Lorem ipsum dolor sit amet consectetur."
     },
     {
         "title": "Lorem Ipsum Dolor",
+        "year": 2025,
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Lorem ipsum dolor sit amet consectetur."
     },
     {
         "title": "Lorem Ipsum Dolor",
+        "year": 2022,
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Lorem ipsum dolor sit amet consectetur."
     },
     {
         "title": "Lorem Ipsum Dolor",
+        "year": 2022,
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Lorem ipsum dolor sit amet consectetur."
     },
     {
         "title": "Lorem Ipsum Dolor",
+        "year": 2026,
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Lorem ipsum dolor sit amet consectetur."
     },
     {
         "title": "Lorem Ipsum Dolor",
+        "year": 2026, 
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Lorem ipsum dolor sit amet consectetur."
     },
     {
         "title": "Lorem Ipsum Dolor",
+        "year": 2024, 
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Lorem ipsum dolor sit amet consectetur."
     },
     {
         "title": "Lorem Ipsum Dolor",
+        "year": 2023,
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Lorem ipsum dolor sit amet consectetur."
     },
     {
         "title": "Lorem Ipsum Dolor",
+        "year": 2023,
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Lorem ipsum dolor sit amet consectetur."
     },
     {
         "title": "Lorem Ipsum Dolor",
+        "yaer": 2026,
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Lorem ipsum dolor sit amet consectetur."
     }
