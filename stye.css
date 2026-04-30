@@ -143,3 +143,13 @@ time {
   font-style: italic;
   color: oklch(50% 0% 0);
 }
+.project-year {
+  font-family: Baskerville, serif;
+  font-variant-numeric: oldstyle-nums;
+  color: oklch(50% 0% 0);
+}
+#projects-pie-plot {
+  max-width: 20em;
+  margin-block: 2em;
+  overflow: visible;
+}
