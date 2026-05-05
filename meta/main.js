@@ -49,6 +49,29 @@ function renderCommitInfo(data, commits) {
 
   dl.append('dt').text('Total commits');
   dl.append('dd').text(commits.length);
+  dl.append('dt').text('Number of files');
+  dl.append('dd').text(d3.group(data, (d) => d.file).size);
+
+  const fileLengths = d3.rollups(
+    data,
+    (v) => d3.max(v, (v) => v.line),
+    (d) => d.file,
+  );
+
+  dl.append('dt').text('Average file length');
+  dl.append('dd').text(Math.round(d3.mean(fileLengths, (d) => d[1])) + ' lines');
+
+  dl.append('dt').text('Longest file');
+  dl.append('dd').text(d3.greatest(fileLengths, (d) => d[1])?.[0]);
+
+  const workByDay = d3.rollups(
+    data,
+    (v) => v.length,
+    (d) => new Date(d.datetime).toLocaleString('en', { weekday: 'long' }),
+  );
+
+  dl.append('dt').text('Most active day');
+  dl.append('dd').text(d3.greatest(workByDay, (d) => d[1])?.[0]);
 }
 
 let data = await loadData();
