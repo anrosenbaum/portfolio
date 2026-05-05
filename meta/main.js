@@ -82,7 +82,7 @@ function updateTooltipContent(commit) {
 
 function updateTooltipVisibility(isVisible) {
   const tooltip = document.getElementById('commit-tooltip');
-  tooltip.style.display = isVisible ? 'grid' : 'none';
+  tooltip.style.opacity = isVisible ? '1' : '0';
 }
 
 function updateTooltipPosition(event) {

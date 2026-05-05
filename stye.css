@@ -240,7 +240,8 @@ time {
   border-radius: 8px;
   padding: 1rem;
   box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
-  display: none;
+  pointer-events: none;
+  opacity: 0;
   transition: opacity 0.2s;
 }
 .tooltip {
