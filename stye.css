@@ -247,3 +247,12 @@ time {
 .tooltip {
   pointer-events: none;
 }
+circle {
+  transition: transform 0.2s;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+circle:hover {
+  transform: scale(1.5);
+}
