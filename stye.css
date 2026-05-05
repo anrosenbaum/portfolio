@@ -209,3 +209,19 @@ time {
   margin-block: 1em;
   font: inherit;
 }
+.stats {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.5rem 1rem;
+}
+
+.stats dt {
+  font-weight: bold;
+  color: gray;
+}
+
+.stats dd {
+  margin: 0;
+  font-weight: bold;
+  font-size: 1.5rem;
+}

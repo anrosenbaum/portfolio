@@ -9,21 +9,6 @@ async function loadData() {
     date: new Date(row.date + 'T00:00' + row.timezone),
     datetime: new Date(row.datetime),
   }));
-
-  return data;
-}
-
-let data = await loadData();
-
-async function loadData() {
-  const data = await d3.csv('loc.csv', (row) => ({
-    ...row,
-    line: Number(row.line),
-    depth: Number(row.depth),
-    length: Number(row.length),
-    date: new Date(row.date + 'T00:00' + row.timezone),
-    datetime: new Date(row.datetime),
-  }));
   return data;
 }
 
@@ -58,4 +43,16 @@ function processCommits(data) {
 
 let data = await loadData();
 let commits = processCommits(data);
-console.log(commits);
+function renderCommitInfo(data, commits) {
+  const dl = d3.select('#stats').append('dl').attr('class', 'stats');
+
+  dl.append('dt').html('Total <abbr title="Lines of code">LOC</abbr>');
+  dl.append('dd').text(data.length);
+
+  dl.append('dt').text('Total commits');
+  dl.append('dd').text(commits.length);
+}
+
+let data = await loadData();
+let commits = processCommits(data);
+renderCommitInfo(data, commits);
