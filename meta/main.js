@@ -150,8 +150,8 @@ function renderScatterPlot(data, commits) {
   // Dots
   const dots = svg.append('g').attr('class', 'dots');
 
-  dots
-    selectAll('circle')
+dots
+  .selectAll('circle')
   .data(commits)
   .join('circle')
   .attr('cx', (d) => xScale(d.datetime))
