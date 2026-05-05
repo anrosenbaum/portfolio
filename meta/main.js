@@ -14,7 +14,6 @@ async function loadData() {
 }
 
 let data = await loadData();
-import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm';
 
 async function loadData() {
   const data = await d3.csv('loc.csv', (row) => ({
@@ -36,7 +35,7 @@ function processCommits(data) {
       let { author, date, time, timezone, datetime } = first;
       let ret = {
         id: commit,
-        url: 'https://github.com/anrosenbaum/commit/' + commit,
+        url: 'https://github.com/anrosenbaum/portfolio/commit/' + commit,
         author,
         date,
         time,
