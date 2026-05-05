@@ -120,6 +120,8 @@ function renderScatterPlot(data, commits) {
     .scaleLinear()
     .domain([0, 24])
     .range([usableArea.bottom, usableArea.top]);
+    const [minLines, maxLines] = d3.extent(commits, (d) => d.totalLines);
+    const rScale = d3.scaleSqrt().domain([minLines, maxLines]).range([2, 30]);
 
   // Gridlines
   const gridlines = svg
@@ -156,7 +158,7 @@ dots
   .join('circle')
   .attr('cx', (d) => xScale(d.datetime))
   .attr('cy', (d) => yScale(d.hourFrac))
-  .attr('r', 5)
+  .attr('r', (d) => rScale(d.totalLines))
   .attr('fill', 'steelblue')
   .on('mouseenter', (event, d) => {
     updateTooltipContent(d);
