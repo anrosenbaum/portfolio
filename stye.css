@@ -243,3 +243,6 @@ time {
   display: none;
   transition: opacity 0.2s;
 }
+.tooltip {
+  pointer-events: none;
+}
