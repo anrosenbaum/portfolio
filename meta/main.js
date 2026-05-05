@@ -165,11 +165,18 @@ dots
     updateTooltipVisibility(true);
     updateTooltipPosition(event);
   })
+  .on('mouseenter', (event, d) => {
+    updateTooltipContent(d);
+    updateTooltipVisibility(true);
+    updateTooltipPosition(event);
+    d3.select(event.currentTarget).style('fill', 'orange');
+  })
   .on('mousemove', (event) => {
     updateTooltipPosition(event);
   })
-  .on('mouseleave', () => {
+  .on('mouseleave', (event) => {
     updateTooltipVisibility(false);
+    d3.select(event.currentTarget).style('fill', 'steelblue');
   });
 }
 
