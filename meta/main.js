@@ -90,6 +90,16 @@ function updateTooltipPosition(event) {
   tooltip.style.left = `${event.clientX + 10}px`;
   tooltip.style.top = `${event.clientY + 10}px`;
 }
+function brushed(event, commits, xScale, yScale) {
+  const selection = event.selection;
+  d3.selectAll('circle').classed('selected', (d) => {
+    if (!selection) return false;
+    const [[x0, y0], [x1, y1]] = selection;
+    const cx = xScale(d.datetime);
+    const cy = yScale(d.hourFrac);
+    return cx >= x0 && cx <= x1 && cy >= y0 && cy <= y1;
+  });
+}
 function renderScatterPlot(data, commits) {
   const width = 1000;
   const height = 600;
@@ -175,6 +185,14 @@ dots
     updateTooltipVisibility(false);
     d3.select(event.currentTarget).style('fill', 'steelblue');
   });
+  const brush = d3.brush()
+  .on('start brush end', (event) => brushed(event, commits, xScale, yScale));
+
+svg.append('g')
+  .attr('class', 'brush')
+  .call(brush);
+
+svg.selectAll('.dots, .overlay ~ *').raise();
 }
 
 let data = await loadData();
