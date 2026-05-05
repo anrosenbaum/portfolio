@@ -233,3 +233,13 @@ time {
 .gridlines path {
   display: none;
 }
+.tooltip {
+  position: fixed;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+  display: none;
+  transition: opacity 0.2s;
+}

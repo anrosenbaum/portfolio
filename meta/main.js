@@ -73,6 +73,23 @@ function renderCommitInfo(data, commits) {
   dl.append('dt').text('Most active day');
   dl.append('dd').text(d3.greatest(workByDay, (d) => d[1])?.[0]);
 }
+function updateTooltipContent(commit) {
+  document.getElementById('commit-id').textContent = commit.id;
+  document.getElementById('commit-date').textContent = commit.datetime?.toLocaleString('en', { dateStyle: 'full' });
+  document.getElementById('commit-time').textContent = commit.time;
+  document.getElementById('commit-lines').textContent = commit.totalLines;
+}
+
+function updateTooltipVisibility(isVisible) {
+  const tooltip = document.getElementById('commit-tooltip');
+  tooltip.style.display = isVisible ? 'grid' : 'none';
+}
+
+function updateTooltipPosition(event) {
+  const tooltip = document.getElementById('commit-tooltip');
+  tooltip.style.left = `${event.clientX + 10}px`;
+  tooltip.style.top = `${event.clientY + 10}px`;
+}
 function renderScatterPlot(data, commits) {
   const width = 1000;
   const height = 600;
@@ -134,13 +151,24 @@ function renderScatterPlot(data, commits) {
   const dots = svg.append('g').attr('class', 'dots');
 
   dots
-    .selectAll('circle')
-    .data(commits)
-    .join('circle')
-    .attr('cx', (d) => xScale(d.datetime))
-    .attr('cy', (d) => yScale(d.hourFrac))
-    .attr('r', 5)
-    .attr('fill', 'steelblue');
+    selectAll('circle')
+  .data(commits)
+  .join('circle')
+  .attr('cx', (d) => xScale(d.datetime))
+  .attr('cy', (d) => yScale(d.hourFrac))
+  .attr('r', 5)
+  .attr('fill', 'steelblue')
+  .on('mouseenter', (event, d) => {
+    updateTooltipContent(d);
+    updateTooltipVisibility(true);
+    updateTooltipPosition(event);
+  })
+  .on('mousemove', (event) => {
+    updateTooltipPosition(event);
+  })
+  .on('mouseleave', () => {
+    updateTooltipVisibility(false);
+  });
 }
 
 let data = await loadData();
