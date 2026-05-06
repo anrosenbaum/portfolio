@@ -212,7 +212,7 @@ function renderScatterPlot(data, commits) {
     .attr('transform', `translate(${usableArea.left}, 0)`)
     .call(yAxis);
 
-  // Dots first
+  // Dots
   const dots = svg.append('g').attr('class', 'dots');
   const sortedCommits = d3.sort(commits, (d) => -d.totalLines);
 
@@ -238,14 +238,17 @@ function renderScatterPlot(data, commits) {
       d3.select(event.currentTarget).style('fill', 'steelblue');
     });
 
-  // Brush on top
-  const brushG = svg.append('g').attr('class', 'brush');
+  // Brush directly on svg
   const brush = d3.brush()
-    .on('start brush end', brushed);
-  brushG.call(brush);
+    .on('start brush end', function(event) {
+      console.log('BRUSH FIRED', event.selection);
+      brushed(event);
+    });
 
-  brushG.select('.overlay').style('pointer-events', 'all');
-  brushG.select('.selection').style('pointer-events', 'none');
+  svg.call(brush);
+
+  // Raise dots above brush overlay
+  dots.raise();
 }
 
 let data = await loadData();
