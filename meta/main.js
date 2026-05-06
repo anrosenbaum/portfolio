@@ -223,18 +223,25 @@ function renderScatterPlot(data, commits) {
     .attr('cy', (d) => yScale(d.hourFrac))
     .attr('r', (d) => rScale(d.totalLines))
     .attr('fill', 'steelblue')
-    .style('pointer-events', 'none');
-
-  // Brush
-  const brushG = svg.append('g').attr('class', 'brush');
-  const brush = d3.brush()
-    .extent([[usableArea.left, usableArea.top], [usableArea.right, usableArea.bottom]])
-    .on('start brush end', function(event) {
-      console.log('BRUSH FIRED', event.selection);
-      brushed(event);
+    .on('mouseenter', (event, d) => {
+      updateTooltipContent(d);
+      updateTooltipVisibility(true);
+      updateTooltipPosition(event);
+      d3.select(event.currentTarget).style('fill', 'orange');
+    })
+    .on('mousemove', (event) => {
+      updateTooltipPosition(event);
+    })
+    .on('mouseleave', (event) => {
+      updateTooltipVisibility(false);
+      d3.select(event.currentTarget).style('fill', 'steelblue');
     });
 
-  brushG.call(brush);
+  // Brush
+  svg.call(d3.brush().on('start brush end', brushed));
+
+  // Raise dots above brush overlay
+  svg.selectAll('.dots, .overlay ~ *').raise();
 }
 let data = await loadData();
 commits = processCommits(data);
