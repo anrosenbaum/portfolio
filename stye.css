@@ -8,9 +8,6 @@ html {
 }
 
 body {
-  /* Set line height to 1.5 times the font size
-     and use the OS's UI font as the website font
-   */
   font: 100%/1.5 system-ui;
   max-width: 100ch;
   margin-inline: auto;
@@ -101,7 +98,6 @@ h1 {
   width: 100%;
 }
 
-/* Resume page styles */
 section {
   margin-block: 2em;
   border-top: 1px solid oklch(80% 3% 200);
@@ -143,11 +139,13 @@ time {
   font-style: italic;
   color: oklch(50% 0% 0);
 }
+
 .project-year {
   font-family: Baskerville, serif;
   font-variant-numeric: oldstyle-nums;
   color: oklch(50% 0% 0);
 }
+
 .container {
   display: flex;
   align-items: center;
@@ -195,11 +193,11 @@ time {
   border-radius: 50%;
 }
 
-.selected {
+.legend-item.selected {
   --color: oklch(60% 45% 0) !important;
 }
 
-.selected:is(path) {
+.legend-item.selected:is(path) {
   fill: var(--color);
 }
 
@@ -209,6 +207,7 @@ time {
   margin-block: 1em;
   font: inherit;
 }
+
 .stats {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -225,6 +224,7 @@ time {
   font-weight: bold;
   font-size: 1.5rem;
 }
+
 .gridlines line {
   stroke: #ddd;
   stroke-opacity: 0.5;
@@ -233,6 +233,7 @@ time {
 .gridlines path {
   display: none;
 }
+
 .tooltip {
   position: fixed;
   background: white;
@@ -244,9 +245,7 @@ time {
   opacity: 0;
   transition: opacity 0.2s;
 }
-.tooltip {
-  pointer-events: none;
-}
+
 circle {
   transition: transform 0.2s;
   transform-origin: center;
@@ -256,9 +255,11 @@ circle {
 circle:hover {
   transform: scale(1.5);
 }
+
 circle.selected {
-  fill: orange;
+  fill: #ff6b6b;
 }
+
 @keyframes marching-ants {
   to {
     stroke-dashoffset: -8;
@@ -273,6 +274,6 @@ circle.selected {
   animation: marching-ants 2s linear infinite;
 }
 
-circle.selected {
-  fill: #ff6b6b;
+.dots circle {
+  pointer-events: all;
 }
