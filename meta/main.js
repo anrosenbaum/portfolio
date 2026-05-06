@@ -247,9 +247,8 @@ function renderScatterPlot(data, commits) {
     });
 
   brushG.call(brush);
-  dots.raise();
+  // Remove dots.raise() - don't raise dots above brush
 }
-
 let data = await loadData();
 commits = processCommits(data);
 renderCommitInfo(data, commits);
