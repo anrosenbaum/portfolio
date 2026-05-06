@@ -143,7 +143,7 @@ function renderLanguageBreakdown(selection) {
 
 function brushed(event) {
   const selection = event.selection;
-  console.log('selection:', selection);
+  console.log('brushed called:', selection);
   console.log('commits:', commits);
   d3.selectAll('circle')
     .classed('selected', (d) => isCommitSelected(selection, d))
@@ -212,17 +212,8 @@ function renderScatterPlot(data, commits) {
     .attr('transform', `translate(${usableArea.left}, 0)`)
     .call(yAxis);
 
-  // Brush
-  const brush = d3.brush()
-    .on('start brush end', brushed);
-
-  svg.append('g')
-    .attr('class', 'brush')
-    .call(brush);
-
-  // Dots
+  // Dots first
   const dots = svg.append('g').attr('class', 'dots');
-
   const sortedCommits = d3.sort(commits, (d) => -d.totalLines);
 
   dots
@@ -247,15 +238,15 @@ function renderScatterPlot(data, commits) {
       d3.select(event.currentTarget).style('fill', 'steelblue');
     });
 
-  // Brush
+  // Brush on top
+  const brushG = svg.append('g').attr('class', 'brush');
   const brush = d3.brush()
     .on('start brush end', brushed);
+  brushG.call(brush);
 
-  svg.append('g')
-    .attr('class', 'brush')
-    .call(brush);
-
-  svg.selectAll('.dots, .overlay ~ *').raise();
+  brushG.select('.overlay').style('pointer-events', 'all');
+  brushG.select('.selection').style('pointer-events', 'none');
+}
 
 let data = await loadData();
 commits = processCommits(data);
