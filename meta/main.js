@@ -211,7 +211,7 @@ function renderScatterPlot(data, commits) {
     .attr('transform', `translate(${usableArea.left}, 0)`)
     .call(yAxis);
 
-  // Dots
+ // Dots
   const dots = svg.append('g').attr('class', 'dots');
   const sortedCommits = d3.sort(commits, (d) => -d.totalLines);
 
@@ -223,19 +223,7 @@ function renderScatterPlot(data, commits) {
     .attr('cy', (d) => yScale(d.hourFrac))
     .attr('r', (d) => rScale(d.totalLines))
     .attr('fill', 'steelblue')
-    .on('mouseenter', (event, d) => {
-      updateTooltipContent(d);
-      updateTooltipVisibility(true);
-      updateTooltipPosition(event);
-      d3.select(event.currentTarget).style('fill', 'orange');
-    })
-    .on('mousemove', (event) => {
-      updateTooltipPosition(event);
-    })
-    .on('mouseleave', (event) => {
-      updateTooltipVisibility(false);
-      d3.select(event.currentTarget).style('fill', 'steelblue');
-    });
+    .style('pointer-events', 'none');
 
   // Brush
   const brushG = svg.append('g').attr('class', 'brush');
@@ -247,7 +235,6 @@ function renderScatterPlot(data, commits) {
     });
 
   brushG.call(brush);
-  // Remove dots.raise() - don't raise dots above brush
 }
 let data = await loadData();
 commits = processCommits(data);
