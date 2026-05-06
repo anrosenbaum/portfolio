@@ -143,7 +143,6 @@ function renderLanguageBreakdown(selection) {
 
 function brushed(event) {
   const selection = event.selection;
-  console.log('BRUSH FIRED', selection);
   d3.selectAll('circle')
     .classed('selected', (d) => isCommitSelected(selection, d))
     .style('fill', (d) => isCommitSelected(selection, d) ? '#ff6b6b' : 'steelblue');
