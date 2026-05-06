@@ -143,8 +143,7 @@ function renderLanguageBreakdown(selection) {
 
 function brushed(event) {
   const selection = event.selection;
-  console.log('brushed called:', selection);
-  console.log('commits:', commits);
+  console.log('BRUSH FIRED', selection);
   d3.selectAll('circle')
     .classed('selected', (d) => isCommitSelected(selection, d))
     .style('fill', (d) => isCommitSelected(selection, d) ? '#ff6b6b' : 'steelblue');
@@ -240,7 +239,6 @@ function renderScatterPlot(data, commits) {
 
   // Brush
   const brushG = svg.append('g').attr('class', 'brush');
-  
   const brush = d3.brush()
     .extent([[usableArea.left, usableArea.top], [usableArea.right, usableArea.bottom]])
     .on('start brush end', function(event) {
@@ -250,12 +248,9 @@ function renderScatterPlot(data, commits) {
 
   brushG.call(brush);
   dots.raise();
+}
 
 let data = await loadData();
 commits = processCommits(data);
 renderCommitInfo(data, commits);
 renderScatterPlot(data, commits);
-
-document.querySelector('#chart svg').addEventListener('mousedown', () => {
-  console.log('SVG mousedown fired');
-});
