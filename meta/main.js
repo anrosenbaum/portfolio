@@ -238,18 +238,18 @@ function renderScatterPlot(data, commits) {
       d3.select(event.currentTarget).style('fill', 'steelblue');
     });
 
-  // Brush directly on svg
+  // Brush
+  const brushG = svg.append('g').attr('class', 'brush');
+  
   const brush = d3.brush()
+    .extent([[usableArea.left, usableArea.top], [usableArea.right, usableArea.bottom]])
     .on('start brush end', function(event) {
       console.log('BRUSH FIRED', event.selection);
       brushed(event);
     });
 
-  svg.call(brush);
-
-  // Raise dots above brush overlay
+  brushG.call(brush);
   dots.raise();
-}
 
 let data = await loadData();
 commits = processCommits(data);
