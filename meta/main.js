@@ -255,3 +255,7 @@ let data = await loadData();
 commits = processCommits(data);
 renderCommitInfo(data, commits);
 renderScatterPlot(data, commits);
+
+document.querySelector('#chart svg').addEventListener('mousedown', () => {
+  console.log('SVG mousedown fired');
+});
