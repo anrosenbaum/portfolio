@@ -247,9 +247,15 @@ function renderScatterPlot(data, commits) {
       d3.select(event.currentTarget).style('fill', 'steelblue');
     });
 
-  // Raise dots above brush overlay
-  dots.raise();
-}
+  // Brush
+  const brush = d3.brush()
+    .on('start brush end', brushed);
+
+  svg.append('g')
+    .attr('class', 'brush')
+    .call(brush);
+
+  svg.selectAll('.dots, .overlay ~ *').raise();
 
 let data = await loadData();
 commits = processCommits(data);
