@@ -4,7 +4,7 @@ function $$(selector, context = document) {
   return Array.from(context.querySelectorAll(selector));
 }
 
-const BASE_PATH = "";
+const BASE_PATH = "/portfolio/";
 
 let pages = [
   { url: '', title: 'Home' },
